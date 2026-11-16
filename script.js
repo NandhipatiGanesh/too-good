@@ -46,8 +46,44 @@
   if (!form) return;
   const fields = form.querySelector('.visit__fields');
   const done = form.querySelector('.visit__done');
+  const inputs = form.querySelectorAll('.m-field__input');
+
+  inputs.forEach(input => {
+    // Prevent typing space at start of any field, or anywhere in email field
+    input.addEventListener('keydown', event => {
+      if (event.key === ' ' || event.code === 'Space') {
+        if (input.type === 'email') {
+          event.preventDefault();
+        } else if (input.selectionStart === 0) {
+          event.preventDefault();
+        }
+      }
+    });
+
+    // Real-time cleanup for paste, autofill, or mobile virtual keyboards
+    input.addEventListener('input', () => {
+      if (input.type === 'email') {
+        input.value = input.value.replace(/\s+/g, '');
+      } else {
+        input.value = input.value.replace(/^\s+/, '');
+      }
+    });
+
+    // Clean trailing whitespace on blur
+    input.addEventListener('blur', () => {
+      if (input.type === 'email') {
+        input.value = input.value.replace(/\s+/g, '');
+      } else {
+        input.value = input.value.trim();
+      }
+    });
+  });
+
   form.addEventListener('submit', event => {
     event.preventDefault();
+    inputs.forEach(input => {
+      input.value = input.type === 'email' ? input.value.replace(/\s+/g, '') : input.value.trim();
+    });
     if (!form.checkValidity()) { form.reportValidity(); return; }
     fields.hidden = true;
     done.hidden = false;
