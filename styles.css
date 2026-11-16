@@ -583,21 +583,344 @@
 
 /* data-8b-part: section:comparison */
 @layer sections {
-  #comparison { padding-block: clamp(88px, 11vw, 156px); }
-  #comparison .comparison__head { max-width: 760px; margin-bottom: clamp(30px, 5vw, 64px); }
-  #comparison .comparison__eyebrow { margin: 0 0 16px; text-transform: uppercase; }
-  #comparison .comparison__head h2 { margin: 0; }
-  #comparison .comparison__intro { max-width: 520px; margin: 22px 0 0; }
-  #comparison .comparison__scroll { overflow-x: auto; overscroll-behavior-inline: contain; }
-  #comparison .comparison__table { width: 100%; min-width: 680px; border-collapse: collapse; text-align: left; }
-  #comparison .comparison__table th,
-  #comparison .comparison__table td { padding: 18px 20px; border-bottom: 1px solid color-mix(in srgb, var(--color-2) 18%, transparent); }
-  #comparison .comparison__table thead th { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
-  #comparison .comparison__table thead th:first-child { width: 20%; }
-  #comparison .comparison__table tbody th { font-size: 15px; font-weight: 500; white-space: nowrap; }
-  #comparison .comparison__table td { font-size: 14px; line-height: 1.5; }
-  #comparison .comparison__table .comparison__ours { background: color-mix(in srgb, var(--color-4) 35%, transparent); }
-  #comparison .comparison__table thead .comparison__ours { border-radius: 12px 12px 0 0; }
-  #comparison .comparison__table tbody tr:last-child .comparison__ours { border-radius: 0 0 12px 12px; }
-  #comparison .comparison__link { display: inline-block; margin-top: 28px; }
+  #comparison {
+    padding-top: clamp(36px, 4vw, 64px);
+    padding-bottom: clamp(48px, 5.5vw, 84px);
+    background: var(--color-1);
+    color: var(--color-2);
+    position: relative;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
+  }
+
+  #comparison .comparison__header {
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+
+  #comparison .comparison__eyebrow-wrap {
+    margin-bottom: 16px;
+  }
+
+  #comparison .comparison__intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 20px var(--space-1);
+    align-items: end;
+  }
+
+  #comparison .comparison__title {
+    max-width: 14em;
+  }
+
+  #comparison .comparison__lead {
+    max-width: 34em;
+    color: var(--color-10);
+  }
+
+  /* 2-Box Comparison Grid */
+  #comparison .comparison__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 2.8vw, 36px);
+    align-items: stretch;
+  }
+
+  /* Base Card Styles */
+  #comparison .comp-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: var(--radius-2);
+    padding: clamp(24px, 2.8vw, 36px);
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.1, 1), box-shadow 0.3s ease;
+  }
+
+  /* Box 1: The Other Options (Muted, Understated) */
+  #comparison .comp-card--other {
+    background: var(--color-11);
+    border: 1px solid color-mix(in srgb, var(--color-2) 15%, transparent);
+    color: var(--color-2);
+  }
+
+  #comparison .comp-card--other .comp-card__heading {
+    color: var(--color-2);
+  }
+
+  #comparison .comp-card--other .comp-card__desc {
+    color: var(--color-10);
+  }
+
+  /* Box 2: TooGood Agency (Elevated, High-Converting Hero Card) */
+  #comparison .comp-card--toogood {
+    background: var(--color-3);
+    border: 2px solid var(--color-2);
+    box-shadow: var(--shadow-2);
+    color: var(--color-2);
+  }
+
+  #comparison .comp-card--toogood:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Top Tags & Badges */
+  #comparison .comp-card__badge-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  #comparison .comp-card__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 14px;
+    border-radius: var(--radius-1);
+    font-family: var(--font-1);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  #comparison .comp-card__tag--other {
+    background: color-mix(in srgb, var(--color-2) 8%, transparent);
+    color: var(--color-10);
+    margin-bottom: 20px;
+  }
+
+  #comparison .comp-card__tag--featured {
+    background: var(--color-4);
+    color: var(--color-2);
+  }
+
+  #comparison .comp-card__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-6);
+  }
+
+  #comparison .comp-card__highlight-pill {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-10);
+    background: color-mix(in srgb, var(--color-2) 6%, transparent);
+    padding: 4px 10px;
+    border-radius: var(--radius-1);
+  }
+
+  #comparison .comp-card__heading {
+    margin: 0 0 10px;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  #comparison .comp-card__desc {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Card Dividers */
+  #comparison .comp-card__rule {
+    height: 1px;
+    background: color-mix(in srgb, var(--color-2) 15%, transparent);
+    margin-block: 20px 22px;
+  }
+
+  #comparison .comp-card__rule--accent {
+    background: color-mix(in srgb, var(--color-2) 20%, transparent);
+  }
+
+  /* List of Points */
+  #comparison .comp-card__list {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-grow: 1;
+  }
+
+  #comparison .comp-card__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #comparison .comp-card__icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    margin-top: 1px;
+    position: relative;
+  }
+
+  /* Cross icon for Box 1 */
+  #comparison .comp-card__icon--cross {
+    background: color-mix(in srgb, var(--color-2) 8%, transparent);
+    color: var(--color-10);
+  }
+  #comparison .comp-card__icon--cross::before,
+  #comparison .comp-card__icon--cross::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 1.5px;
+    background: currentColor;
+  }
+  #comparison .comp-card__icon--cross::before { transform: rotate(45deg); }
+  #comparison .comp-card__icon--cross::after { transform: rotate(-45deg); }
+
+  /* Check icon for Box 2 (TooGood) */
+  #comparison .comp-card__icon--check {
+    background: var(--color-4);
+    color: var(--color-2);
+  }
+  #comparison .comp-card__icon--check::after {
+    content: "";
+    width: 5px;
+    height: 9px;
+    border-right: 2px solid var(--color-2);
+    border-bottom: 2px solid var(--color-2);
+    transform: translateY(-1px) rotate(45deg);
+  }
+
+  #comparison .comp-card__text {
+    display: grid;
+    gap: 3px;
+  }
+
+  #comparison .comp-card__text strong {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-2);
+    letter-spacing: -0.01em;
+  }
+
+  #comparison .comp-card__item--negative .comp-card__text span {
+    color: var(--color-10);
+  }
+
+  #comparison .comp-card__item--positive .comp-card__text span {
+    color: color-mix(in srgb, var(--color-2) 85%, transparent);
+  }
+
+  /* Card Footers */
+  #comparison .comp-card__footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
+  }
+
+  #comparison .comp-card__footer--other {
+    background: color-mix(in srgb, var(--color-2) 4%, transparent);
+    margin-inline: calc(-1 * clamp(24px, 2.8vw, 36px));
+    margin-bottom: calc(-1 * clamp(24px, 2.8vw, 36px));
+    padding: 16px clamp(24px, 2.8vw, 36px);
+    border-radius: 0 0 var(--radius-2) var(--radius-2);
+    border-top: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
+  }
+
+  #comparison .comp-card__verdict-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-10);
+    margin-bottom: 4px;
+  }
+
+  #comparison .comp-card__verdict-text {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--color-10);
+    margin: 0;
+  }
+
+  #comparison .comp-card__action {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  #comparison .comp-card__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #comparison .comp-card__btn .m-btn__label {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  #comparison .comp-card__reassurance {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--color-10);
+    text-align: center;
+  }
+
+  /* Bottom Trust Strip */
+  #comparison .comparison__trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 16px;
+    margin-top: clamp(24px, 3.2vw, 36px);
+    padding: 16px var(--space-1);
+    background: color-mix(in srgb, var(--color-2) 4%, transparent);
+    border-radius: var(--radius-1);
+  }
+
+  #comparison .comparison__trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+  }
+
+  #comparison .comparison__trust-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-6);
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 950px) {
+    #comparison .comparison__cards {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    #comparison .comparison__intro-grid {
+      grid-template-columns: 1fr;
+    }
+    #comparison .comp-card--toogood {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #comparison .comparison__trust-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: var(--radius-2);
+      gap: 12px;
+    }
+  }
 }
