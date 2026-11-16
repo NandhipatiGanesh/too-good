@@ -646,7 +646,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
     <p class="m-text">TooGood Agency creates thoughtful websites and clear, practical dashboards for businesses.</p>
     <div class="visit__contact m-text">
     </div>
-    <form class="visit__form" action="#visit" method="post" enctype="text/plain">
+    <form class="visit__form" name="contact" method="post" action="#visit" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden><label>Don’t fill this out: <input name="bot-field"></label></p>
       <p class="m-text-7">Start a conversation</p>
       <p class="m-text-8">Share your project details and we’ll get back to you to discuss next steps.</p>
       <div class="visit__fields">

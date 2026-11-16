@@ -85,6 +85,16 @@
       input.value = input.type === 'email' ? input.value.replace(/\s+/g, '') : input.value.trim();
     });
     if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const formData = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    }).catch(error => {
+      console.warn('Form submission handled locally:', error);
+    });
+
     fields.hidden = true;
     done.hidden = false;
   });
