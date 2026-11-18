@@ -585,54 +585,89 @@
 /* data-8b-part: section:comparison */
 @layer sections {
   #comparison {
-    padding-top: clamp(36px, 4vw, 64px);
-    padding-bottom: clamp(48px, 5.5vw, 84px);
+    min-height: min(84vh, 760px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: clamp(24px, 3.5vh, 44px);
+    padding-bottom: clamp(24px, 3.5vh, 44px);
     background: var(--color-1);
     color: var(--color-2);
     position: relative;
     border-bottom: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
   }
 
+  /* Centered Viewport Master Container with Smaller Sizing */
+  #comparison .comparison__container {
+    width: 100%;
+    max-width: 840px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Centered Header - Clean & Compact */
   #comparison .comparison__header {
-    margin-bottom: clamp(32px, 4vw, 48px);
+    width: 100%;
+    max-width: 620px;
+    margin-inline: auto;
+    text-align: center;
+    margin-bottom: clamp(16px, 2vw, 24px);
   }
 
   #comparison .comparison__eyebrow-wrap {
-    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
   }
 
-  #comparison .comparison__intro-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    gap: 20px var(--space-1);
-    align-items: end;
+  #comparison .comparison__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
   }
 
   #comparison .comparison__title {
-    max-width: 14em;
+    max-width: 20ch;
+    text-align: center;
+    margin-inline: auto;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
 
   #comparison .comparison__lead {
-    max-width: 34em;
+    max-width: 38em;
+    text-align: center;
+    margin-inline: auto;
     color: var(--color-10);
+    line-height: 1.4;
+    font-size: 13.5px;
   }
 
-  /* 2-Box Comparison Grid */
+  /* 2-Box Comparison Grid - Smaller Containers, Centered Viewport */
   #comparison .comparison__cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(20px, 2.8vw, 36px);
+    gap: 18px;
     align-items: stretch;
+    width: 100%;
+    max-width: 840px;
+    margin-inline: auto;
   }
 
-  /* Base Card Styles */
+  /* Base Card Styles - Smaller Containers */
   #comparison .comp-card {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: var(--radius-2);
-    padding: clamp(24px, 2.8vw, 36px);
+    border-radius: 14px;
+    padding: 18px 20px;
     transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.1, 1), box-shadow 0.3s ease;
   }
 
@@ -668,18 +703,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   #comparison .comp-card__tag {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    height: 30px;
-    padding: 0 14px;
+    gap: 6px;
+    height: 26px;
+    padding: 0 10px;
     border-radius: var(--radius-1);
     font-family: var(--font-1);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -688,7 +723,7 @@
   #comparison .comp-card__tag--other {
     background: color-mix(in srgb, var(--color-2) 8%, transparent);
     color: var(--color-10);
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   #comparison .comp-card__tag--featured {
@@ -697,33 +732,33 @@
   }
 
   #comparison .comp-card__dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--color-6);
   }
 
   #comparison .comp-card__highlight-pill {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-10);
     background: color-mix(in srgb, var(--color-2) 6%, transparent);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: var(--radius-1);
   }
 
   #comparison .comp-card__heading {
-    margin: 0 0 10px;
-    font-size: clamp(22px, 2.2vw, 30px);
+    margin: 0 0 4px;
+    font-size: clamp(18px, 1.6vw, 22px);
     line-height: 1.15;
     letter-spacing: -0.03em;
   }
 
   #comparison .comp-card__desc {
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 13.5px;
+    line-height: 1.38;
     margin: 0;
   }
 
@@ -731,7 +766,7 @@
   #comparison .comp-card__rule {
     height: 1px;
     background: color-mix(in srgb, var(--color-2) 15%, transparent);
-    margin-block: 20px 22px;
+    margin-block: 10px 12px;
   }
 
   #comparison .comp-card__rule--accent {
@@ -741,7 +776,7 @@
   /* List of Points */
   #comparison .comp-card__list {
     display: grid;
-    gap: 16px;
+    gap: 9px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -751,15 +786,15 @@
   #comparison .comp-card__item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    font-size: 14px;
-    line-height: 1.5;
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.35;
   }
 
   #comparison .comp-card__icon {
     flex: none;
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     display: inline-grid;
     place-items: center;
@@ -776,7 +811,7 @@
   #comparison .comp-card__icon--cross::after {
     content: "";
     position: absolute;
-    width: 9px;
+    width: 8px;
     height: 1.5px;
     background: currentColor;
   }
@@ -790,62 +825,65 @@
   }
   #comparison .comp-card__icon--check::after {
     content: "";
-    width: 5px;
-    height: 9px;
-    border-right: 2px solid var(--color-2);
-    border-bottom: 2px solid var(--color-2);
+    width: 4px;
+    height: 8px;
+    border-right: 1.8px solid var(--color-2);
+    border-bottom: 1.8px solid var(--color-2);
     transform: translateY(-1px) rotate(45deg);
   }
 
   #comparison .comp-card__text {
-    display: grid;
-    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
 
   #comparison .comp-card__text strong {
     font-weight: 500;
-    font-size: 15px;
+    font-size: 13.5px;
     color: var(--color-2);
     letter-spacing: -0.01em;
   }
 
   #comparison .comp-card__item--negative .comp-card__text span {
     color: var(--color-10);
+    font-size: 12.5px;
   }
 
   #comparison .comp-card__item--positive .comp-card__text span {
-    color: color-mix(in srgb, var(--color-2) 85%, transparent);
+    color: color-mix(in srgb, var(--color-2) 80%, transparent);
+    font-size: 12.5px;
   }
 
   /* Card Footers */
   #comparison .comp-card__footer {
-    margin-top: 24px;
-    padding-top: 20px;
+    margin-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
   }
 
   #comparison .comp-card__footer--other {
     background: color-mix(in srgb, var(--color-2) 4%, transparent);
-    margin-inline: calc(-1 * clamp(24px, 2.8vw, 36px));
-    margin-bottom: calc(-1 * clamp(24px, 2.8vw, 36px));
-    padding: 16px clamp(24px, 2.8vw, 36px);
-    border-radius: 0 0 var(--radius-2) var(--radius-2);
+    margin-inline: -20px;
+    margin-bottom: -18px;
+    padding: 10px 20px;
+    border-radius: 0 0 14px 14px;
     border-top: 1px solid color-mix(in srgb, var(--color-2) 12%, transparent);
   }
 
   #comparison .comp-card__verdict-title {
     display: block;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--color-10);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   #comparison .comp-card__verdict-text {
-    font-size: 13.5px;
-    line-height: 1.45;
+    font-size: 12px;
+    line-height: 1.35;
     color: var(--color-10);
     margin: 0;
   }
@@ -854,12 +892,14 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 5px;
+    margin-bottom: 5px;
   }
 
   #comparison .comp-card__btn {
     width: 100%;
+    height: 40px;
+    font-size: 13px;
     justify-content: center;
   }
 
@@ -870,20 +910,22 @@
 
   #comparison .comp-card__reassurance {
     margin: 0;
-    font-size: 12.5px;
+    font-size: 11px;
     color: var(--color-10);
     text-align: center;
   }
 
-  /* Bottom Trust Strip */
+  /* Bottom Trust Strip - Centered Viewport */
   #comparison .comparison__trust-bar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap: 16px;
-    margin-top: clamp(24px, 3.2vw, 36px);
-    padding: 16px var(--space-1);
+    width: 100%;
+    max-width: 760px;
+    margin: 14px auto 0;
+    padding: 8px 16px;
     background: color-mix(in srgb, var(--color-2) 4%, transparent);
     border-radius: var(--radius-1);
   }
@@ -891,37 +933,78 @@
   #comparison .comparison__trust-item {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 13.5px;
+    gap: 7px;
+    font-size: 12px;
   }
 
   #comparison .comparison__trust-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--color-6);
   }
 
-  /* Responsive Breakpoints */
-  @media (max-width: 950px) {
+  /* Medium Screens (Tablets / Laptops: 601px - 820px) */
+  @media (max-width: 820px) {
+    #comparison {
+      min-height: 0;
+      padding-block: 36px;
+    }
+    #comparison .comparison__container {
+      max-width: 420px;
+      margin-inline: auto;
+    }
     #comparison .comparison__cards {
       grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    #comparison .comparison__intro-grid {
-      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 100%;
+      margin-inline: auto;
     }
     #comparison .comp-card--toogood {
       order: -1;
     }
+    #comparison .comparison__trust-bar {
+      justify-content: center;
+      gap: 10px 16px;
+    }
   }
 
+  /* Small Screens (Mobile: <= 600px) */
   @media (max-width: 600px) {
+    #comparison {
+      min-height: 0;
+      padding-block: 28px;
+    }
+    #comparison .comparison__container {
+      max-width: 100%;
+      margin-inline: auto;
+    }
+    #comparison .comparison__cards {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      width: 100%;
+      margin-inline: auto;
+    }
+    #comparison .comp-card {
+      padding: 16px 14px;
+    }
+    #comparison .comp-card__footer--other {
+      margin-inline: -14px;
+      margin-bottom: -16px;
+      padding: 8px 14px;
+      border-radius: 0 0 14px 14px;
+    }
     #comparison .comparison__trust-bar {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
       border-radius: var(--radius-2);
-      gap: 12px;
+      gap: 8px;
+      padding: 10px 14px;
+    }
+    #comparison .comparison__trust-item {
+      justify-content: center;
+      text-align: center;
     }
   }
 }
