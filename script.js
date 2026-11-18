@@ -48,6 +48,10 @@
   const done = form.querySelector('.visit__done');
   const inputs = form.querySelectorAll('.m-field__input');
 
+  // Google Sheets Web App Endpoint (Apps Script)
+  // Bound to Sheet: https://docs.google.com/spreadsheets/d/1JuAwRYeh1t4x20poRcJdQjo0KPQbdo2Fb6IvXJNSnsw/edit
+  const GOOGLE_SCRIPT_URL = '';
+
   inputs.forEach(input => {
     // Prevent typing space at start of any field, or anywhere in email field
     input.addEventListener('keydown', event => {
@@ -87,6 +91,21 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
     const formData = new FormData(form);
+
+    // 1. Send to Google Sheets Web App if configured
+    if (GOOGLE_SCRIPT_URL) {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      }).then(() => {
+        console.log('Successfully saved to Google Sheets');
+      }).catch(error => {
+        console.warn('Google Sheets notice:', error);
+      });
+    }
+
+    // 2. Local fallback
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

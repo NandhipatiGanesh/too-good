@@ -1,0 +1,9 @@
+# Netlify
+.netlify/
+.netlify
+netlify.toml
+
+# OS and environment files
+.DS_Store
+Thumbs.db
+node_modules/
