@@ -50,7 +50,7 @@
 
   // Google Sheets Web App Endpoint (Apps Script)
   // Bound to Sheet: https://docs.google.com/spreadsheets/d/1JuAwRYeh1t4x20poRcJdQjo0KPQbdo2Fb6IvXJNSnsw/edit
-  const GOOGLE_SCRIPT_URL = '';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1I141-sag8da5iecXY1iHCLxA1KRnSfozqV0lcxoIjtW7sRy3WMopuSx-yQmmZ5Ci/exec';
 
   inputs.forEach(input => {
     // Prevent typing space at start of any field, or anywhere in email field
@@ -96,7 +96,7 @@
     if (GOOGLE_SCRIPT_URL) {
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: formData,
+        body: new URLSearchParams(formData),
         mode: 'no-cors'
       }).then(() => {
         console.log('Successfully saved to Google Sheets');
