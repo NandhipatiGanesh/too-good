@@ -689,13 +689,14 @@
   /* Box 2: TooGood Agency (Elevated, High-Converting Hero Card) */
   #comparison .comp-card--toogood {
     background: var(--color-3);
-    border: 2px solid var(--color-2);
+    border: 1px solid color-mix(in srgb, var(--color-2) 16%, transparent);
     box-shadow: var(--shadow-2);
     color: var(--color-2);
   }
 
   #comparison .comp-card--toogood:hover {
     transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-2) 26%, transparent);
   }
 
   /* Top Tags & Badges */
