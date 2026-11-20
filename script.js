@@ -52,6 +52,8 @@
   // Bound to Sheet: https://docs.google.com/spreadsheets/d/1JuAwRYeh1t4x20poRcJdQjo0KPQbdo2Fb6IvXJNSnsw/edit
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1I141-sag8da5iecXY1iHCLxA1KRnSfozqV0lcxoIjtW7sRy3WMopuSx-yQmmZ5Ci/exec';
 
+  const phoneInput = form.querySelector('input[name="phone"]');
+
   inputs.forEach(input => {
     // Prevent typing space at start of any field, or anywhere in email field
     input.addEventListener('keydown', event => {
@@ -83,11 +85,42 @@
     });
   });
 
+  if (phoneInput) {
+    // Strictly prevent typing letters/alphabets into phone field
+    phoneInput.addEventListener('keydown', event => {
+      const allowedKeys = ['Backspace', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Delete', 'Home', 'End'];
+      if (allowedKeys.includes(event.key) || event.ctrlKey || event.metaKey) return;
+      if (!/^[0-9+\s\-()]$/.test(event.key)) {
+        event.preventDefault();
+      }
+    });
+
+    // Real-time cleanup for paste/autofill: strip any letters/illegal characters
+    phoneInput.addEventListener('input', () => {
+      phoneInput.value = phoneInput.value.replace(/[^0-9+\s\-()]/g, '');
+      phoneInput.setCustomValidity('');
+    });
+  }
+
   form.addEventListener('submit', event => {
     event.preventDefault();
     inputs.forEach(input => {
       input.value = input.type === 'email' ? input.value.replace(/\s+/g, '') : input.value.trim();
     });
+
+    // Strict Phone Number Validation: Reject any letters and require at least 7 digits
+    if (phoneInput) {
+      const val = phoneInput.value.trim();
+      const digits = (val.match(/\d/g) || []).length;
+      if (/[a-zA-Z]/.test(val) || digits < 7 || digits > 18) {
+        phoneInput.setCustomValidity('Please enter a valid phone number with numbers only (minimum 7 digits).');
+        phoneInput.reportValidity();
+        return;
+      } else {
+        phoneInput.setCustomValidity('');
+      }
+    }
+
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
     const formData = new FormData(form);

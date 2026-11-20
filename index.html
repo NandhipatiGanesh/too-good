@@ -615,7 +615,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <div class="visit__fields">
         <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" type="text" name="name" autocomplete="name" placeholder="e.g. Alex Morgan" required></label>
         <label class="m-field"><span class="m-field__label">Your email address</span><input class="m-field__input" type="email" name="email" autocomplete="email" placeholder="e.g. alex@company.com" required></label>
-        <label class="m-field"><span class="m-field__label">Phone number</span><input class="m-field__input" type="tel" name="phone" autocomplete="tel" placeholder="e.g. +1 (555) 000-0000" required></label>
+        <label class="m-field"><span class="m-field__label">Phone number</span><input class="m-field__input" type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[\+]?[0-9\s\-\(\)]{7,18}" title="Please enter a valid phone number with numbers only (minimum 7 digits)" placeholder="e.g. +1 (555) 000-0000" required></label>
         <button class="m-btn-2" type="submit"><span class="m-btn__dot" aria-hidden="true"></span><span class="m-btn__label">Send an enquiry</span></button>
       </div>
       <p class="m-text visit__done" role="status" hidden>Thanks for getting in touch. We’ll be in touch soon.</p>
